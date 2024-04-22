@@ -47,19 +47,13 @@
   console.log(coffeeMakerA);
 
   class User {
-    firstName: string;
-    lastName: string;
     get fullName(): string {
       return `${this.firstName} ${this.lastName}`;
     }
-    constructor(firstName: string, lastName: string) {
-      this.firstName = firstName;
-      this.lastName = lastName;
-      // this.fullName = `${firstName} ${lastName}`;
-    }
+    constructor(private firstName: string, private lastName: string) {}
   }
   const user = new User("Steve", "Jobs");
   console.log(user.fullName);
-  user.firstName = "Hyeonjin";
+  // user.firstName = "Hyeonjin";
   console.log(user.fullName);
 }
