@@ -4,7 +4,11 @@
     hasMilk: boolean;
   };
 
-  class CoffeeMaker {
+  interface ICoffeeMachine {
+    makeCoffee(shots: number): CoffeeCup;
+  }
+
+  class CoffeeMaker implements ICoffeeMachine {
     private static BEANS_GRAMM_PER_SHOT: number = 7;
     private coffeeBeansGR: number = 0;
 
@@ -16,7 +20,7 @@
       return new CoffeeMaker(coffeeBeansGR);
     }
 
-    fillCoffeeMaker(beansGR: number) {
+    fillHopper(beansGR: number) {
       if (beansGR < 0) {
         throw new Error(
           "🤨 hey, value for 'beansGR' should be greater than '0'."
@@ -52,6 +56,11 @@
     }
   }
 
-  const coffeeMakerA = CoffeeMaker.makeCoffeeMaker(100);
-  console.log(coffeeMakerA);
+  const CoffeeMakerA: CoffeeMaker = CoffeeMaker.makeCoffeeMaker(100);
+  CoffeeMakerA.fillHopper(100);
+  CoffeeMakerA.makeCoffee(2);
+
+  const CoffeeMakerB: ICoffeeMachine = CoffeeMaker.makeCoffeeMaker(200);
+  CoffeeMakerB.fillHopper(200); // 여기엔 fillHopper 메서드가 없음
+  CoffeeMakerB.makeCoffee(2);
 }
