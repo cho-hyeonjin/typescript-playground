@@ -25,7 +25,7 @@
       this.coffeeBeansGR += beansGR;
     }
 
-    grindBeans(shots: number) {
+    private grindBeans(shots: number) {
       console.log(`grinding beans for ${shots}`);
       if (this.coffeeBeansGR < CoffeeMaker.BEANS_GRAMM_PER_SHOT * shots) {
         throw new Error("😰 Not enough coffee beans! 🫘N");
@@ -33,11 +33,11 @@
       this.coffeeBeansGR -= CoffeeMaker.BEANS_GRAMM_PER_SHOT * shots;
     }
 
-    preheat(): void {
+    private preheat(): void {
       console.log("♨️heating up the coffee maker♨️");
     }
 
-    extract(shots: number): CoffeeCup {
+    private extract(shots: number): CoffeeCup {
       console.log(`☕️ Pulling ${shots} shots`);
       return {
         shots,
