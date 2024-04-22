@@ -5,13 +5,13 @@
   };
 
   // pubilc (default)
-  // private
-  // protected
+  // private --- 클래스 외부에서 접근 불가
+  // protected --- 해당 클래스를 상속하여 생성된 클래스 내부에서는 접근 가능, 외부에서는 여전히 접근 불가
   class CoffeeMaker {
     private static BEANS_GRAMM_PER_SHOT: number = 7; // 외부에서 볼 필요 없는 or 봐서는 안되는 정보는 private으로 설정
-    private coffeeBeansGR: number = 0;
+    protected coffeeBeansGR: number = 0;
 
-    constructor(coffeeBeansGR: number) {
+    private constructor(coffeeBeansGR: number) {
       this.coffeeBeansGR = coffeeBeansGR;
     }
 
@@ -40,7 +40,7 @@
     }
   }
 
-  const coffeeMakerA = new CoffeeMaker(100);
+  const coffeeMakerA = CoffeeMaker.makeCoffeeMaker(100);
   // CoffeeMakerA.coffeeBeansGR = 100;
   // CoffeeMakerA.coffeeBeansGR = -100; // 😨 콩을 -100개로 만드는건 불가능해..! → private으로 설정!
   coffeeMakerA.fillCoffeeMaker(100);
